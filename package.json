@@ -1,0 +1,30 @@
+{
+  "name": "nestjs-daily-standup-generator",
+  "version": "1.0.0",
+  "description": "NestJS tool to generate daily standup report from Git commits",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "build": "nest build",
+    "start:prod": "node dist/main.js",
+    "report:run": "ts-node -r tsconfig-paths/register src/report/run-report.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/core": "^10.0.0",
+    "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/schedule": "^3.0.0",
+    "axios": "^1.0.0",
+    "dayjs": "^1.11.0",
+    "dotenv": "^16.0.0",
+    "fs-extra": "^11.0.0",
+    "form-data": "^4.0.0",
+    "simple-git": "^3.19.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.0"
+  }
+}

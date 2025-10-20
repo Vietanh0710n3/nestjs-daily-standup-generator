@@ -49,7 +49,7 @@ export class ReportService {
             await fs.ensureDir(this.reportDir);
             await fs.writeFile(filePath, content, 'utf-8');
             this.logger.log(`Report generated: ${filePath}`);
-            return { message: 'No commits in last 24h', path: filePath, commitsCount: 0, content };
+            return { message: 'Không có commit nào trong vòng 24 giờ qua', path: filePath, commitsCount: 0, content };
         }
 
         // Nhóm commit theo ngày
@@ -63,7 +63,7 @@ export class ReportService {
         if (commitsYesterday.length > 0) {
             content += `## Hôm qua (${yesterday}):\n`;
             commitsYesterday.forEach(c => {
-                content += `- ${c.date} ${c.message} – *${c.author}* (${c.hash.slice(0, 7)})\n`;
+                content += `- ${c.date} ${c.message} *${c.author}* (${c.hash.slice(0, 7)})\n`;
             });
             content += `\n`;
         }
@@ -71,7 +71,7 @@ export class ReportService {
         if (commitsToday.length > 0) {
             content += `## Hôm nay (${today}):\n`;
             commitsToday.forEach(c => {
-                content += `- ${c.date} ${c.message} – *${c.author}* (${c.hash.slice(0, 7)})\n`;
+                content += `- ${c.date} ${c.message} *${c.author}* (${c.hash.slice(0, 7)})\n`;
             });
             content += `\n`;
         }
@@ -79,9 +79,6 @@ export class ReportService {
         if (commitsYesterday.length === 0 && commitsToday.length === 0) {
             content += `Không có commit nào trong 24 giờ qua.\n`;
         }
-
-        content += `## Tiếp tục công việc:\n\n`;
-        content += `## Blockers:\nKhông có (hoặc ghi blocker nếu có)\n`;
 
         await fs.ensureDir(this.reportDir);
         await fs.writeFile(filePath, content, 'utf-8');

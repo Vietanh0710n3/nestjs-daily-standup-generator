@@ -5,7 +5,7 @@ import { ReportService } from './report.service';
 export class ReportController {
     constructor(private readonly reportService: ReportService) { }
 
-    // GET /report?since=2 days ago&author=Nguyễn
+    // API tạo báo cáo trong 24h
     @Get()
     async createReport(@Query('since') since?: string, @Query('author') author?: string) {
         const result = await this.reportService.generateMarkdownReport(since || '1 day ago', author);
